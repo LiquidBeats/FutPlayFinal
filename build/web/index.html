@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/Soccer Ball_76px.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/FutPlayFinal/GaiaTemplate/assets/img/Soccer Ball_100px.png">
+
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />-->
+    <title>FutPlay</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <link href="/FutPlayFinal/GaiaTemplate/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="/FutPlayFinal/GaiaTemplate/assets/css/gaia.css" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href='https://fonts.googleapis.com/css?family=Cambo|Poppins:400,600' rel='stylesheet' type='text/css'>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/FutPlayFinal/GaiaTemplate/assets/css/fonts/pe-icon-7-stroke.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-transparent navbar-fixed-top" color-on-scroll="200">
+        <!-- if you want to keep the navbar hidden you can add this class to the navbar "navbar-burger"-->
+        <div class="container">
+            <div class="navbar-header">
+               <button id="menu-toggle" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar bar1"></span>
+                    <span class="icon-bar bar2"></span>
+                    <span class="icon-bar bar3"></span>
+                </button>
+                <a href="#" class="navbar-brand">
+                    FutPlay
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <div class="main-nav">
+                <ul class="nav navbar-nav navbar-right navbar-uppercase">
+                    
+                    <li class="dropdown">
+                        <a href="/FutPlayFinal/material-dashboard/pages/usuario/login.html">
+                            Inicia sesión
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#modalUsuarios" data-toggle="modal" class="btn btn-danger btn-fill">regístrate</a>
+                        <!-- Modal -->
+                        <div id="modalUsuarios" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content col-lg-8 col-lg-offset-2">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Regístrate como:</h4>
+                              </div>
+                              <div class="modal-body col-lg-12">
+                                  <a href="/FutPlayFinal/material-dashboard/pages/propietario/registrarPropietario.jsp" class="btn btn-danger btn-fill btn-lg pull-left">Propietario</a>
+                                  <a href="/FutPlayFinal/material-dashboard/pages/jugador/registrarJugador.jsp" class="btn btn-danger btn-fill btn-lg pull-right">Jugador</a>
+                              </div>
+                              <div class="modal-footer">
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+    </nav>
+
+
+    <div class="section section-header" id="He">
+        <div class="parallax filter filter-color-green">
+            <div class="image"
+                style="background-image: url('/FutPlayFinal/GaiaTemplate/assets/img/bannerIndex.jpg')">
+            </div>
+            <div class="container">
+                <div class="content">
+                    <div class="title-area">
+                        <p></p>
+                        <h1 class="title-modern">FutPlay</h1>
+                        <h3>Somos la primera red social de Fútbol en el mundo, te conectamos con otros jugadores que comparten tu pasion. </h3>
+                        <div class="separator line-separator">♦</div>
+                    </div>
+
+                    <div class="button-get-started">
+                        <a href="/FutPlay/PAGES/Usuario/Login.jsp" target="_blank" class="btn btn-white btn-fill btn-lg ">Comienza hoy
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="title-area">
+                    <h2>Unete a nuestra comunidad de jugadores</h2>
+                    <div class="separator separator-danger">✻</div>
+                    <p class="description">Conectate con tus amigos, conoce nuevos jugadores, organiza encuentros y comparte experiencias. Conforma tu equipo, participa y compite en torneos, convierte a tu equipo en el numero 1</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="info-icon">
+                        <div class="icon text-danger">
+                            <i class="pe-7s-note2"></i>
+                        </div>
+                        <h3>Crea tu perfil</h3>
+                        <p class="description">Comienza tu experiencia creando tu perfil de jugador, muestra tus habilidades y revisa tu progreso como jugador</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-icon">
+                        <div class="icon text-danger">
+                            <i class="pe-7s-users"></i>
+                        </div>
+                        <h3>Confoma tu equipo</h3>
+                        <p class="description">Sé el lider de tu equipo, agrega a otros jugadres, conforma y administra tu plantilla de equipo y compite en torneos regionales</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-icon">
+                        <div class="icon text-danger">
+                            <i class="pe-7s-gleam"></i>
+                        </div>
+                        <h3>Organiza encuentros</h3>
+                        <p class="description">Rodeate de grandes jugadores en un ambiente competitivo y retador, organiza encuentros con otros equipos y jugadores mediante nuestro gestor de partidas!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section section-our-team-freebie">
+        <div class="parallax filter filter-color-black">
+            <div class="image" style="background-image:url('/FutPlayFinal/GaiaTemplate/assets/img/soccer-wallpaper-hd-18.jpg')">
+            </div>
+            <div class="container">
+                <div class="content">
+                    <div class="row">
+                        <div class="title-area">
+                            <h2>Registra tu campo y comparte experiencias únicas!</h2>
+                            <div class="separator separator-danger">✻</div>
+                            <p class="description">Registra tu campo para que otros jugadores puedan jugar contigo, recibe ganancias por cada encuentro del cual seas anfitrion</p>
+                        </div>
+                    </div>
+
+                    <div class="team">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card card-member">
+                                            <div class="content">
+                                                <div class="avatar avatar-danger">
+                                                    <img alt="..." class="img-circle" src="/FutPlayFinal/GaiaTemplate/assets/img/faces/Partido.jpg"/>
+                                                </div>
+                                                <div class="description">
+                                                    <h3 class="title">Registra tu campo</h3>
+                                                    
+                                                    <p class="description"><br>Permite que otros jugadores y equipos compitan en tu campo, recibe ganancias por cada encuentro, convierte a tu campo en el mas popular!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card card-member">
+                                            <div class="content">
+                                                <div class="avatar avatar-danger">
+                                                    <img alt="..." class="img-circle" src="/FutPlayFinal/GaiaTemplate/assets/img/faces/Torneo.jpg"/>
+                                                </div>
+                                                <div class="description">
+                                                    <h3 class="title">Organiza Torneos</h3>
+                                                    
+                                                    <p class="description">
+                                                    <br>Crea torneos e invita a otos equipos a participar, crea tu propia comunidad de jugadores y equipos para demostrar cual es el mejor<br>
+                                                    <br></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card card-member">
+                                            <div class="content">
+                                                <div class="avatar avatar-danger">
+                                                    <img alt="..." class="img-circle" src="/FutPlayFinal/GaiaTemplate/assets/img/faces/Penalti.jpg"/>
+                                                </div>
+                                                <div class="description">
+                                                    <h3 class="title">Administra tus campos</h3>
+                                                    
+                                                    <p class="description">
+                                                    <br>
+                                                    Gestiona de manera practica los encuentros que se jugaran en tus  canchas, gestiona mas de un campo y recibe jugadores diariamente!<br>
+                                                    <br></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section section-our-clients-freebie">
+        <div class="container">
+            <div class="title-area">
+                <h5 class="subtitle text-gray">Te queremos contar</h5>
+                <h2>Equipo de Desarrollo</h2>
+                <div class="separator separator-danger">∎</div>
+            </div>
+
+            <ul class="nav nav-text" role="tablist">
+                <li class="active">
+                    <a href="#testimonial1" role="tab" data-toggle="tab">
+                        <div class="image-clients">
+                            <img alt="..." class="img-circle" src="/FutPlayFinal/GaiaTemplate/assets/img/faces/face_5.jpg"/>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#testimonial2" role="tab" data-toggle="tab">
+                        <div class="image-clients">
+                            <img alt="..." class="img-circle" src="/FutPlayFinal/GaiaTemplate/assets/img/faces/face_6.jpg"/>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#testimonial3" role="tab" data-toggle="tab">
+                        <div class="image-clients">
+                            <img alt="..." class="img-circle" src="/FutPlayFinal/GaiaTemplate/assets/img/faces/face_2.jpg"/>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="testimonial1">
+                    <p class="description">
+                        Queremos llevarte toda la experiencia que se vive en el Fútbol competitivo para que sientas como si estuvieras jugando de forma profesional. Nos esmeramos para entregarte un producto con el cual puedas compartir tu pasión por este deporte con tus familiares y amigos, y para que vivas el Fútbol de una manera más interactiva
+                    </p>
+                </div>
+                <div class="tab-pane" id="testimonial2">
+                    <p class="description">Desarrollamos este proyecto inicialmente pensando en la acogida que tiene el Fútbol en nuestra región. Tenemos la idea de que si facilitamos la comunicación entre los jugadores podremos lograr que estos compitan de forma mas regular y organizada
+                    </p>
+                </div>
+                <div class="tab-pane" id="testimonial3">
+                    <p class="description">
+                    Yo solo quería ser popular!!
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="section section-small section-get-started">
+        <div class="parallax filter">
+            <div class="image"
+                style="background-image: url('/FutPlayFinal/GaiaTemplate/assets/img/campofooter.jpg')">
+            </div>
+            <div class="container">
+                <div class="title-area">
+                    <h2 class="text-white">FutPlay Team</h2>
+                    <div class="separator line-separator">♦</div>
+                    <p class="description">Ahora que nos conoces un poco mas no pierdas esta oportunidad para hacer parte de nuestra comunidad de FutPlayers!</p>
+                </div>
+
+                <div class="button-get-started">
+                    <a href="#gaia" class="btn btn-danger btn-fill btn-lg">Comienza ahora</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer footer-big footer-color-black" data-color="black">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-sm-3">
+                    <div class="info">
+                        <h5 class="title">Company</h5>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="#">Home</a></li>
+                                <li>
+                                    <a href="#">Find offers</a>
+                                </li>
+                                <li>
+                                    <a href="#">Discover Projects</a>
+                                </li>
+                                <li>
+                                    <a href="#">Our Portfolio</a>
+                                </li>
+                                <li>
+                                    <a href="#">About Us</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-md-3 col-md-offset-1 col-sm-3">
+                    <div class="info">
+                        <h5 class="title"> Help and Support</h5>
+                         <nav>
+                            <ul>
+                                <li>
+                                    <a href="#">Contact Us</a>
+                                </li>
+                                <li>
+                                    <a href="#">How it works</a>
+                                </li>
+                                <li>
+                                    <a href="#">Terms &amp; Conditions</a>
+                                </li>
+                                <li>
+                                    <a href="#">Company Policy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Money Back</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <div class="info">
+                        <h5 class="title">Latest News</h5>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i> <b>Get Shit Done</b> The best kit in the market is here, just give it a try and let us...
+                                        <hr class="hr-small">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i> We've just been featured on <b> Awwwards Website</b>! Thank you everybody for...
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-md-2 col-md-offset-1 col-sm-3">
+                    <div class="info">
+                        <h5 class="title">Follow us on</h5>
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="#" class="btn btn-social btn-facebook btn-simple">
+                                        <i class="fa fa-facebook-square"></i> Facebook
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn btn-social btn-dribbble btn-simple">
+                                        <i class="fa fa-dribbble"></i> Dribbble
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn btn-social btn-twitter btn-simple">
+                                        <i class="fa fa-twitter"></i> Twitter
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="btn btn-social btn-reddit btn-simple">
+                                        <i class="fa fa-google-plus-square"></i> Google+
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="copyright">
+                 © <script> document.write(new Date().getFullYear()); </script> FutPlay Team
+            </div>
+            
+        </div>
+    </footer>
+    <!--   core js files    -->
+    <script src="/FutPlayFinal/GaiaTemplate/assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/FutPlayFinal/GaiaTemplate/assets/js/bootstrap.js" type="text/javascript"></script>
+
+    <!--  js library for devices recognition -->
+    <script type="text/javascript" src="/FutPlayFinal/GaiaTemplate/assets/js/modernizr.js"></script>
+
+    <!--   file where we handle all the script from the Gaia - Bootstrap Template   -->
+    <script type="text/javascript" src="/FutPlayFinal/GaiaTemplate/assets/js/gaia.js"></script>
+
+</body>
+
+</html>
