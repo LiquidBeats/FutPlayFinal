@@ -39,7 +39,7 @@
                         <!--      Wizard container        -->
                         <div class="wizard-container">
                             <div class="card wizard-card" data-color="red" id="wizardProfile">
-                                <form action="" method="" novalidate="novalidate" id="frmJugador">
+                                <form action="" method="" novalidate="novalidate" id="frmJugador" enctype="multipart/form-data">
                                     <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                                     <div class="wizard-header">
                                         <h3 class="wizard-title">

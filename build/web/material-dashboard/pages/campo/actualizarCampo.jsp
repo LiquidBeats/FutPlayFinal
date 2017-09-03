@@ -21,7 +21,7 @@
                                         <i class="material-icons">aspect_ratio</i>
                                     </div>
                                     <div class="card-content">
-                                        <h4 class="card-title">Registra tu campo</h4>
+                                        <h4 class="card-title">Edita tu campo</h4>
                                         <div class="col-sm-4 col-sm-offset-1">
                                             <div class="fileinput fileinput-new text-center" style="margin-top:22px;" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail">

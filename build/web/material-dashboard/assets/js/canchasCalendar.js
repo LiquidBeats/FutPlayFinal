@@ -124,7 +124,7 @@ $(document).ready(function(){
            data:{campo:campo}
         }).done(function(data){
             for (var i = 0; i < data.canchas.length; i++) {
-                $("#cardEvents").append("<div class='fc-event btn btn-round btn-xs' style='background-color:#9C27B0;'>"+data.canchas[i]+"</div>");
+                $("#cardEvents").append("<div class='fc-event btn btn-round btn-xs' style='background-color:#48A44C;'>"+data.canchas[i]+"</div>");
                 //asignarDroppable();
                 $(".fc-event").draggable({
                 zIndex: 999,

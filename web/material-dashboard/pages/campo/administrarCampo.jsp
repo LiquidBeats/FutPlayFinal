@@ -152,6 +152,8 @@
         <script type="text/javascript">
             $("#nombrepagina").text("Administrar campos");
             $("#campos").addClass("active");
+            $("#administrarcampos").addClass("active");
+            $("#camposOptions").addClass("in");
         </script>
     </body>
 </html>

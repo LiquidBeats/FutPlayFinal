@@ -25,30 +25,21 @@
                 </li>
                 <li class="dropdown">
                     <!-- ESPACIO PARA LAS NOTIFICACIONES -->   
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <!-- AGREGAR A LAS NOTIFICACIONES ETIQUETE A.class: verNotificaciones,actualizarNotificaciones-->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" rel="tooltip" data-placement="bottom" data-original-title="Notificaciones">
                         <i class="material-icons">notifications</i>
-                        <span class="notification">5</span>
+                        <div id="numeroNotificacionesContainer"></div>
                         <p class="hidden-lg hidden-md">
-                            Notifications
-                            <b class="caret"></b>
+                            Notificaciones
+                            <!--<b class="caret"></b>-->
                         </p>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li class="header-title"> Sidebar Filters</li>
-                        <li class="row">
-                            <div class="col-md-4">
-                                <i class="material-icons">card_travel</i>
-                            </div>
-                            <div class="col-md-8 col-md-offset-4">
-                                <p>Este es el contenido del mensaje</p>
-                            </div>
-                        </li>
-                    </ul>
+                
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" id="btnCerrarSesion" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle" rel="tooltip" title="Cerrar sesión" data-placement="bottom" id="btnCerrarSesion" data-toggle="dropdown">
                         <i class="material-icons">power_settings_new</i>
-                        <p class="hidden-lg hidden-md">Profile</p>
+                        <p class="hidden-lg hidden-md">Cerrar sesión</p>
                     </a>
                 </li>
                 <li class="separator hidden-lg hidden-md"></li>

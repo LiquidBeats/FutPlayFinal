@@ -240,6 +240,7 @@
     <script src="../../assets/js/jquery.validate.min.js"></script>
     <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
     <script src="../../assets/js/moment.min.js"></script>
+    <script src="../../assets/js/es.js"></script>
     <!--  Charts Plugin -->
     <script src="../../assets/js/chartist.min.js"></script>
     <!--  Plugin for the Wizard -->

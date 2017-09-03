@@ -16,15 +16,15 @@
                         <div class="col-md-8 col-md-offset-2">
                             <div class="card card-profile">
                                 <div class="card-avatar">
-                                    <a href="#pablo">
-                                        <img class="img" src="../../assets/img/avatares/<%=objPropietario.getPersona().getAvatar()%>">
+                                    <a href="#">
+                                        <img class="img" src="/FutPlayFinal/material-dashboard/assets/img/avatares/<%=objPropietario.getPersona().getAvatar()%>">
                                     </a>
                                 </div>
                                 <div class="card-content">
                                     <h6 class="category text-gray"><%=objPropietario.getPersona().getNombres()%></h6>
                                     <h4 class="card-title"><%=objPropietario.getPersona().getApellidos()%></h4>
                                     <p class="description"><%=objPropietario.getPersona().getCorreo()%></p>
-                                    
+                                    <p class="description"><%=objPropietario.getPersona().getTelefono()%></p>
                                     <a href="/FutPlayFinal/material-dashboard/pages/propietario/editarPerfilPropietario.jsp" class="btn btn-danger btn-round">Editar perfil</a>
                                 </div>
                             </div>
@@ -37,6 +37,7 @@
         <script type="text/javascript">
             $("#nombrepagina").text("Mi perfil");
             $("#verperfil").addClass("active");
+            $("#opcionesPerfil").addClass("in");
         </script>
     </body>
 </html>

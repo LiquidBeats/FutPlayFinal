@@ -149,7 +149,7 @@ $(document).ready(function(){
        return pattern.test(value);
     });
     $.validator.addMethod("validarTelefono", function(value){
-       var pattern = /^3[0,1,2,3,5][0-9]{8}$/;
+       var pattern = /^3[0,1,2,3,5][0-9][0-9]{7}$/;
        return pattern.test(value);
     });
     var $validator = $('#frmPropietario').validate({
@@ -264,7 +264,7 @@ $(document).ready(function(){
                                        url:"/FutPlayFinal/usuario/registrar",
                                        method:"post",
                                        data:{UNombre:UNombre,UApellido:UApellido,UFechaNacimiento:UFechaNacimiento,UTelefono:UTelefono,UGenero:UGenero,UCorreo:UCorreo,UContrasenia:UContrasenia,UAvatar:UAvatar},
-                                       complete: function(){
+                                       success: function(){
                                            ////////Subir Avatar/////////
                                             var data = new FormData();
                                             $.each($('#avatarPropietario')[0].files, function(i, file) {
@@ -292,6 +292,8 @@ $(document).ready(function(){
                                                title:"Bienvenido!",
                                                text:"Ahora haces parte de la comunidad futplay inicia sesion y disfruta",
                                                type:"success",
+                                               confirmButtonText:"Aceptar",
+                                               showCancelButton:false,
                                                preConfirm: function(){
                                                    window.location.href = "/FutPlayFinal/material-dashboard/pages/usuario/login.html";
                                                }
@@ -384,24 +386,25 @@ $(document).ready(function(){
                             });
                         }
                         getUbicacion(function(ubi){                       
-                            var data = new FormData();
-                            $.each($('#fotocampoupload')[0].files, function(i, file) {
-                                 data.append('file-'+i, file);
-                            });
-                            $.ajax({
-                                url: '/FutPlayFinal/uploadfiles',
-                                data: data,
-                                dataType: 'text',
-                                processData: false,
-                                contentType: false,
-                                type: 'POST'
-                            });
-
                             $.ajax({
                                 url:"/FutPlayFinal/campos/registrarcampo",
                                 type:"post",
                                 data:{nombrecampo:nombrecampo,direccioncampo:direccioncampo,ubicacion:ubi,horarioapertura:horarioapertura,horariocierre:horariocierre,fotocampo:fotocampo},
-                                cache:false
+                                cache:false,
+                                success: function(){
+                                    var data = new FormData();
+                                    $.each($('#fotocampoupload')[0].files, function(i, file) {
+                                         data.append('file-'+i, file);
+                                    });
+                                    $.ajax({
+                                        url: '/FutPlayFinal/uploadfiles',
+                                        data: data,
+                                        dataType: 'text',
+                                        processData: false,
+                                        contentType: false,
+                                        type: 'POST'
+                                    });
+                                }
                             }).done(function(rt){          
                                 if(rt!=="0"){
                                     swal({
@@ -601,22 +604,24 @@ $(document).ready(function(){
                         });
                     }
                     getUbicacion(function(ubi){
-                        var data = new FormData();
-                        $.each($('#fotocampouploadUP')[0].files, function(i, file) {
-                             data.append('file-'+i, file);
-                        });
-                        $.ajax({
-                            url: '/FutPlayFinal/uploadfiles',
-                            data: data,
-                            dataType: 'text',
-                            processData: false,
-                            contentType: false,
-                            type: 'POST'
-                        });
                         $.ajax({
                             url:"/FutPlayFinal/campos/actualizarcampo",
                             method:"post",
-                            data:{nombrecampoUP:nombrecampoUP,direccioncampoUP:direccioncampoUP,ubicacionUP:ubi,horarioatencionabreUP:horarioatencionabreUP,horarioatencioncierreUP:horarioatencioncierreUP,fotocampoUP:fotocampoUP}
+                            data:{nombrecampoUP:nombrecampoUP,direccioncampoUP:direccioncampoUP,ubicacionUP:ubi,horarioatencionabreUP:horarioatencionabreUP,horarioatencioncierreUP:horarioatencioncierreUP,fotocampoUP:fotocampoUP},
+                            success: function(){
+                                var data = new FormData();
+                                $.each($('#fotocampouploadUP')[0].files, function(i, file) {
+                                     data.append('file-'+i, file);
+                                });
+                                $.ajax({
+                                    url: '/FutPlayFinal/uploadfiles',
+                                    data: data,
+                                    dataType: 'text',
+                                    processData: false,
+                                    contentType: false,
+                                    type: 'POST'
+                                });
+                            }
                         }).done(function(rt){
                              if(rt!=="0"){
                                  swal({
@@ -715,10 +720,6 @@ $(document).ready(function(){
         e.preventDefault();
         
     });
-////////////////////////////////////Peticion de ajax para actualizar una cancha/////////////////////////////
-    $("#frmCanchaUP").on("submit",function(e){
-        e.preventDefault();
-    });
 //////////////////////////////////Chequeo de campos registrados fancy button////////////////////////////////
     $(".btnVerCampos").on("click",function(e){
        e.preventDefault();
@@ -785,23 +786,29 @@ $(document).ready(function(){
 ////////////////////////////Editar propietario//////////////////////////
     $("#frmEditarPropietario").validate({
        rules: {
-                nombresPropietarioUP:{
-                    required:true,
-                    minlength:3
-                },
-                apellidosPropietarioUP:{
-                    required:true,
-                    minlength:3
-                },
-                fechanacimientoPropietarioUP:{
-                    required:true
-                },
-                telefonoPropietarioUP:{
-                    required:true
-                },
-                generoPropietarioUP:{
-                    required:true
-                }
+            nombresPropietarioUP:{
+                required:true,
+                minlength:3
+            },
+            apellidosPropietarioUP:{
+                required:true,
+                minlength:3
+            },
+            fechanacimientoPropietarioUP:{
+                required:true
+            },
+            telefonoPropietarioUP:{
+                required:true,
+                validarTelefono:true
+            },
+            emailPropietarioUP:{
+                required:true,
+                validarEmail:true,
+                email:true
+            },
+            generoPropietarioUP:{
+                required:true
+            }
         },
         messages:{
             nombresPropietarioUP:{
@@ -816,7 +823,13 @@ $(document).ready(function(){
                 required:"Selecciona tu fecha de nacimiento"
             },
             telefonoPropietarioUP:{
-                required:"Ingresa tu numero telefonico"
+                required:"Ingresa tu numero telefonico",
+                validarTelefono:"Ingresa un numero telefonico valido"
+            },
+            emailPropietarioUP:{
+                required:"Ingresa tu correo electronico",
+                validarEmail:"Ingresa un correo electronico valido",
+                email:"Ingresa un correo electronico valido"
             },
             generoPropietarioUP:{
                 required:"Selecciona tu genero"
@@ -857,7 +870,7 @@ $(document).ready(function(){
                             method:"post",
                             dataType:"json",
                             data:{UId:UId,UNombre:UNombre,UApellido:UApellido,UFechaNacimiento:UFechaNacimiento,UTelefono:UTelefono,UGenero:UGenero,UCorreo:UCorreo,UContrasenia:UContrasenia,UAvatar:UAvatar},
-                            complete: function(){
+                            success: function(){
                             ////////Subir Avatar/////////
                                  var data = new FormData();
                                  $.each($('#avatarPropietarioUP')[0].files, function(i, file) {

@@ -505,7 +505,7 @@ var $validator = $('#frmJugador').validate({
                                        url:"/FutPlayFinal/usuario/registrar",
                                        method:"post",
                                        data:{UNombre:UNombre,UApellido:UApellido,UFechaNacimiento:UFechaNacimiento,UTelefono:UTelefono,UGenero:UGenero,UCorreo:UCorreo,UContrasenia:UContrasenia,UAvatar:UAvatar},
-                                       complete: function(){
+                                       success: function(){
                                            ////////Subir Avatar/////////
                                             var data = new FormData();
                                             $.each($('#avatarJugador')[0].files, function(i, file) {
@@ -533,7 +533,6 @@ var $validator = $('#frmJugador').validate({
                                               dataType:"json",
                                               data:{UCorreo:UCorreo,Alias:alias,Posicion:posicion,Pierna:pierna,Descripcion:descripcion,rankingSystem1:rankingSystem1,rankingSystem2:rankingSystem2,rankingSystem3:rankingSystem3}
                                            }).done(function(data){
-                                               console.log(data);
                                                $.ajax({
                                                   url:"/FutPlayFinal/notificacion/notificacionregistro"
                                                });
@@ -545,6 +544,8 @@ var $validator = $('#frmJugador').validate({
                                                title:"Bienvenido!",
                                                text:"Ahora haces parte de la comunidad futplay inicia sesion y disfruta",
                                                type:"success",
+                                               confirmButtonText:"Aceptar",
+                                               showCancelButton:false,
                                                preConfirm: function(){
                                                    window.location.href = "/FutPlayFinal/material-dashboard/pages/usuario/login.html";
                                                }
