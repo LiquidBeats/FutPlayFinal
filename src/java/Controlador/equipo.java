@@ -388,14 +388,11 @@ public class equipo extends HttpServlet {
             
             Session s = HibernateUtil.getSessionFactory().openSession();   
             Query q = s.createQuery("FROM Equipo WHERE idEquipo != 1 AND idEquipo != "+objJugador.getEquipo()+" ");
-            //Query q = s.createQuery("FROM Equipo");
             listEq = q.list();
             System.out.println(listEq);
         }
-        catch(HibernateException ex){
+        catch(Exception ex){
             System.out.println(ex);
-        }catch(Exception ex){
-            System.err.println(ex);
         }
         return listEq;
         

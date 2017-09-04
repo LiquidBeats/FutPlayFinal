@@ -15,7 +15,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 public class uploadAvatar extends HttpServlet {
 
-    private final String UPLOAD_DIRECTORY = "C:\\Users\\migue\\Videos\\FutPlayFinal\\web\\material-dashboard\\assets\\img\\avatares"; 
+    private final String UPLOAD_DIRECTORY = "/material-dashboard/assets/img/avatares"; 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,9 +39,14 @@ public class uploadAvatar extends HttpServlet {
                 List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);       
 
                 for(FileItem item : multiparts){
-                    if(!item.isFormField()){
-                        String name = new File(item.getName()).getName();
-                        item.write( new File(UPLOAD_DIRECTORY + File.separator + name));
+                    try{
+                        if(!item.isFormField()){
+                            String name = new File(item.getName()).getName();
+                            item.write( new File(this.getServletContext().getRealPath(UPLOAD_DIRECTORY) + File.separator + name));
+                        }
+                    }
+                    catch(Exception ex){
+                        System.out.println("error "+ex);
                     }
                 }           
                 

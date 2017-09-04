@@ -34,10 +34,13 @@
                                         <span class="card-title"><%=lc.getNombre()%></span>                                   
                                     </div>
                                     <div class="card-content">
-                                        <div class="card-actions">
+                                        <div class="card-actions">  
                                             <button type="button" data-toggle="modal" type="button" class="btn btn-info btn-simple btnModalCancha" rel="tooltip" data-placement="bottom" title="Añadir canchas" value="<%=lc.getIdCampo()%>">
                                                  <i class="material-icons" style="font-size: 30px;">add</i>
-                                            </button>                                           
+                                            </button>  
+                                            <button type="button" type="button" class="btn btn-warning btn-simple btnAdminCancha" rel="tooltip" data-placement="bottom" title="Administrar canchas" value="<%=lc.getIdCampo()%>">
+                                                 <i class="material-icons" style="font-size: 30px;">list</i>
+                                            </button>      
                                             <!-- Classic Modal -->
                                             <div class="modal fade" id="canchaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -57,19 +60,8 @@
                                                                             <th>Tipo</th>
                                                                             <th>Acciones</th>
                                                                         </thead>
-                                                                        <tbody>
-                                                                            <%
-                                                                                canchas canchaC = new canchas();
-                                                                                List<Canchas> listCan = canchaC.getAll(11);
-                                                                            %>
-                                                                            <%for (Canchas lcan : listCan) { %>
-                                                                            <tr>
-                                                                                <td><%=lcan.getNumero()%></td>
-                                                                                <td><%=lcan.getTipo_Cancha()%></td>
-                                                                                <td><button class="btn btn-info btn-simple" rel="tooltip" title="Actualizar" value="<%=lcan.getIdCancha()%>"><i class="material-icons" style="font-size:20px;">mode_edit</i></button>
-                                                                                <button class="btn btn-danger btn-simple btnEliminarCancha" rel="tooltip" title="Eliminar" value="<%=lcan.getIdCancha()%>"><i class="material-icons" style="font-size:20px;">delete</i></button></td>
-                                                                            </tr>
-                                                                            <%}%>
+                                                                        <tbody id="tblCanchas">
+                                                                            
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -152,6 +144,8 @@
         <script type="text/javascript">
             $("#nombrepagina").text("Administrar campos");
             $("#campos").addClass("active");
+            $("#administrarcampos").addClass("active");
+            $("#camposOptions").addClass("in");
         </script>
     </body>
 </html>

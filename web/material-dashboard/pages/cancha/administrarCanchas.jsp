@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <button class="btn btn-primary btn-lg btn-round btnGuardarCambios">Guardar cambios</button>
+                                    <button class="btn btn-danger btn-lg btn-round btnGuardarCambios">Confirmar encuentros</button>
                                 </div>
                             </div>
                             <div class="col-lg-9">

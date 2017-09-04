@@ -36,20 +36,20 @@
                                     </div>
                                     <div class="card-content">
                                         <h4 class="card-title">Registra tu campo</h4>
-                                        <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="col-sm-4 col-sm-offset-1" id="pene">
                                             <div class="fileinput fileinput-new text-center" style="margin-top:22px;" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail">
                                                     <img src="/FutPlayFinal/material-dashboard/assets/img/register.jpeg" alt="...">
                                                 </div>
                                                 <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                                 <div>
-                                                    <span class="btn btn-danger btn-round btn-file">
+                                                    <span class="btn btn-info btn-round btn-file">
                                                         <span class="fileinput-new">Seleccionar imagen</span>
                                                         <span class="fileinput-exists">Cambiar</span>
                                                         <input type="file" name="fotocampoupload" id="fotocampoupload"/>
                                                         <input type="text" hidden name="campoFotoNombre" id="campoFotoNombre"/>
                                                     </span>
-                                                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Cancelar</a>
+                                                    <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Cancelar</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -107,6 +107,8 @@
         <script type="text/javascript">
             $("#nombrepagina").text("Agregar campo");
             $("#campos").addClass("active");
+            $("#registrarcampos").addClass("active");
+            $("#camposOptions").addClass("in");
         </script>
     </body>
 </html>

@@ -15,7 +15,7 @@
         response.sendRedirect("/FutPlayFinal/index.html");
     }
 %>
-<div class="sidebar" data-active-color="red" data-background-color="black" data-image="../../assets/img/sidebar-1.jpg">
+<div class="sidebar" data-active-color="red" data-background-color="black" data-image="/FutPlayFinal/GaiaTemplate/assets/img/campofooter.jpg">
     <div class="logo">
         <a href="http://localhost:8080/FutPlayFinal/material-dashboard/pages/propietario/indexPropietario.jsp" class="simple-text">
             FutPlay
@@ -29,14 +29,14 @@
     <div class="sidebar-wrapper">
         <div class="user">
             <div class="photo">
-                <img src="/FutPlayFinal/Imagenes/<%=objPropietario.getPersona().getAvatar()%>" />
+                <img src="/FutPlayFinal/material-dashboard/assets/img/avatares/<%=objPropietario.getPersona().getAvatar()%>" />
             </div>
             <div class="info">
-                <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                <a data-toggle="collapse" href="#opcionesPerfil" class="collapsed">
                     <%=objPropietario.getPersona().getNombres()+" "+objPropietario.getPersona().getApellidos()%>
                     <b class="caret"></b>
                 </a>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" id="opcionesPerfil">
                     <ul class="nav">
                         <li id="verperfil">
                             <a href="/FutPlayFinal/material-dashboard/pages/propietario/verPerfilPropietario.jsp">Ver perfil</a>
@@ -67,11 +67,12 @@
                 </a>
                 <div class="collapse" id="camposOptions">
                     <ul class="nav">
-                        <li>
+                        <li id="registrarcampos">
                             <a href="http://localhost:8080/FutPlayFinal/material-dashboard/pages/campo/registrarCampo.jsp">Agregar campo</a>
                         </li>
-                        <li>
-                            <a href="http://localhost:8080/FutPlayFinal/material-dashboard/pages/campo/administrarCampo.jsp">Administrar campos</a>
+                        <li id="administrarcampos">
+                            <a href="#" class="btnVerCampos">Administrar campos</a>
+                            <input type="text" name="idVerCampos" id="idVerCampos" hidden value="<%=objPropietario.getIdPropietario()%>"/>
                         </li>
                     </ul>
                 </div>
@@ -88,20 +89,11 @@
                         <li>
                             <a href="./forms/regular.html">Regular Forms</a>
                         </li>
-                        <li>
-                            <a href="./forms/extended.html">Extended Forms</a>
-                        </li>
-                        <li>
-                            <a href="./forms/validation.html">Validation Forms</a>
-                        </li>
-                        <li>
-                            <a href="./forms/wizard.html">Wizard</a>
-                        </li>
                     </ul>
                 </div>
             </li>
             <li id="cronograma">
-                <a href="http://localhost:8080/FutPlayFinal/material-dashboard/pages/cancha/administrarCanchas.jsp">
+                <a href="#" class="btnVerCanchas">
                     <i class="material-icons">today</i>
                     <p>Cronograma</p>
                 </a>
