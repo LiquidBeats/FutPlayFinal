@@ -31,6 +31,7 @@
                                 </div>
                             </div>
                         </div>
+                        <p id="sinMSJ" style="display: none">no</p>
                         <%}else{%>
                         <div class="card">
                             <div class="card-header card-header-icon" data-background-color="rose">
@@ -76,55 +77,108 @@
             var contenido;
             var mensaje;
            
-            
-            var websocket = new WebSocket("ws://localhost:8080/FutPlayFinal/salaChat");
-            websocket.onmessage = function (message){
-                //console.log(message.data);
-                var jsonData = JSON.parse(message.data);
-                //console.log(jsonData);
-                $("#mensajes").html("");
-                for (var i = 0; i < jsonData.length; i++) {
-                    //mensajesArea.value += jsonData[i].Contenido + "\n";
+            if($("#sinMSJ").text() == "no"){
+                
+                $.notify({
+                    icon: "speaker_notes_off",
+                    message: "Tus mensaje apareceran cuando hagas parte de un equipo."
+
+                },{
+                    type: 'warning',
+                    timer: 2500,
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    }
+                });
+                
+            }else{
+                
+                var websocket = new WebSocket("ws://localhost:8080/FutPlayFinal/salaChat");
+                websocket.onmessage = function (message){
+                    //console.log(message.data);
+                    var jsonData = JSON.parse(message.data);
+                    //console.log(jsonData);
+                    $("#mensajes").html("");
                     
-                    var tipo="";
-                    var remitente="";
-                    var icono="";
-                    var color = "";
-                    if (jsonData[i].Jugador.idJugador == <%=objJugador.getIdJugador()%>) {
+                    if(jsonData.length == 0){
                         
-                        tipo = "<li class='timeline-inverted'>";
-                        remitente = "Tú";
-                        icono = "person";
-                        color = "info";
+                        $.notify({
+                            icon: "speaker_notes_off",
+                            message: "Por el momento no tienes mensajes en tu bandeja de entrada."
+
+                        },{
+                            type: 'danger',
+                            timer: 2500,
+                            placement: {
+                                from: 'bottom',
+                                align: 'right'
+                            }
+                        });
+                        $("#mensajes").html("<li>"
+                                                + "<div class='timeline-badge danger'>"
+                                                    + "<i class='material-icons'>speaker_notes_off</i>"
+                                                + "</div>"
+                                                + "<div class='timeline-panel'>"
+                                                    + "<div class='timeline-heading'>"
+                                                        + "<span class='label label-danger'>FutPlay</span>"
+                                                    + "</div>"
+                                                    + "<div class='timeline-body'>"
+                                                        + "<p>Por el momento no tienes mensajes en tu bandeja de entrada.</p>"
+                                                    + "</div>"
+                                                    + "<small class='category text-gray'>"
+                                                        + "<i class='ti-time'></i> Justo ahora"
+                                                    + "</small>"
+                                                + "</div>"
+                                            +"</li>");
                     }else{
                         
-                        tipo = "<li>";
-                        remitente = jsonData[i].Jugador.Alias;
-                        icono = "people";
-                        color="warning";
+                        for (var i = 0; i < jsonData.length; i++) {
+                        //mensajesArea.value += jsonData[i].Contenido + "\n";
+
+                        var tipo="";
+                        var remitente="";
+                        var icono="";
+                        var color = "";
+                        if (jsonData[i].Jugador.idJugador == <%=objJugador.getIdJugador()%>) {
+
+                            tipo = "<li class='timeline-inverted'>";
+                            remitente = "Tú";
+                            icono = "person";
+                            color = "info";
+                        }else{
+
+                            tipo = "<li>";
+                            remitente = jsonData[i].Jugador.Alias;
+                            icono = "people";
+                            color="warning";
+                        }
+
+                        $("#mensajes").append(tipo
+                                                + "<div class='timeline-badge "+color+"'>"
+                                                    + "<i class='material-icons'>"+icono+"</i>"
+                                                + "</div>"
+                                                + "<div class='timeline-panel'>"
+                                                    + "<div class='timeline-heading'>"
+                                                        + "<span class='label label-"+color+"'>"+remitente+"</span>"
+                                                    + "</div>"
+                                                    + "<div class='timeline-body'>"
+                                                        + "<p>"+jsonData[i].Contenido+"</p>"
+                                                    + "</div>"
+                                                    + "<small class='category text-gray'>"
+                                                        + "<i class='ti-time'></i> "+jsonData[i].Fecha
+                                                    + "</small>"
+                                                + "</div>"
+                                            +"</li>");
+                        }
+                        var div_msg = document.getElementById('mensajesContainer');
+                        div_msg.scrollTop = div_msg.scrollHeight;
+                        
                     }
                     
-                    $("#mensajes").append(tipo
-                                            + "<div class='timeline-badge "+color+"'>"
-                                                + "<i class='material-icons'>"+icono+"</i>"
-                                            + "</div>"
-                                            + "<div class='timeline-panel'>"
-                                                + "<div class='timeline-heading'>"
-                                                    + "<span class='label label-"+color+"'>"+remitente+"</span>"
-                                                + "</div>"
-                                                + "<div class='timeline-body'>"
-                                                    + "<p>"+jsonData[i].Contenido+"</p>"
-                                                + "</div>"
-                                                + "<small class='category text-gray'>"
-                                                    + "<i class='ti-time'></i> "+jsonData[i].Fecha
-                                                + "</small>"
-                                            + "</div>"
-                                        +"</li>");
-                }
-                var div_msg = document.getElementById('mensajesContainer');
-                div_msg.scrollTop = div_msg.scrollHeight;
-                //alert("mensaje procesado");
-            };
+                };
+                
+            }
             
             function enviarMensaje(){
                 //alert("enviando mensaje...");

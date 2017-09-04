@@ -19,6 +19,25 @@
                 <%@include file="../includes/header.jsp" %>
                 <div class="content">
                     <div class="container-fluid">
+                        <%if (objJugador.getEquipo().toString().equals("1")) {%>
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class='card card-profile'>
+                                <div class='card-header card-header-icon' data-background-color='rose'>
+                                    <i class="material-icons">speaker_notes_off</i>
+                                </div>
+                                <div class="card-content">
+                                    <div class="clearfix"></div>
+                                    <h6 class="category text-gray">¿No tienes encuentros?</h6>
+                                    <h4 class="card-title">FutPlay te informa</h4>
+                                    <p class="description">
+                                        Hola, por el momento no haces parte de un equipo. Nos gustaria que crearass tu propio equipo con el que podras competir en los torneo, on en su defecto pidele a un amigo que te agregue su equipo :).
+                                    </p>
+                                    <a href="/FutPlayFinal/material-dashboard/pages/equipo/verEquipo.jsp" class="btn btn-rose btn-round">Ir a crear equipo</a>
+                                </div>
+                            </div>
+                        </div>
+                        <p id="noEncuentros">no</p>
+                        <%}else{%>
                         <div class="col-sm-10 col-sm-offset-1">
                             <!--      Wizard container        -->
                             <div class="wizard-container">
@@ -47,30 +66,30 @@
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="about">
                                                 <div class="row">
-                                                    <h4 class="info-text"> Seleccione un Tipo de partida</h4>
+                                                    <h4 class="info-text"> Selecciona el tipo de encuentro</h4>
                                                     <div class="col-sm-4">
-                                                        <div class="choice" data-toggle="wizard-checkbox">
-                                                            <input class="btnEquipo" type="checkbox" name="tipo" id="tipo" value="5">
-                                                            <div class="icon">
-                                                                <i class="fa fa-facebook"></i>
+                                                        <div class="choice" onclick="tipoSeleccionado(5)" data-toggle="wizard-radio">
+                                                            <input type="radio">
+                                                            <div class="icon text-center">
+                                                                <h1>5</h1>
                                                             </div>
                                                             <h6>Futbol 5</h6>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        <div class="choice" data-toggle="wizard-checkbox">
-                                                            <input class="btnEquipo" type="checkbox" name="tipo" id="tipo" value="8">
-                                                            <div class="icon">
-                                                                <i class="fa fa-terminal"></i>
+                                                        <div class="choice" onclick="tipoSeleccionado(8)" data-toggle="wizard-radio">
+                                                            <input type="radio">
+                                                            <div class="icon text-center">
+                                                                <h1>8</h1>
                                                             </div>
                                                             <h6>Futbol 8</h6>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-4">
-                                                        <div class="choice" data-toggle="wizard-checkbox">
-                                                            <input class="btnEquipo" type="checkbox" name="tipo" id="tipo" value="12">
-                                                            <div class="icon">
-                                                                <i class="fa fa-terminal"></i>
+                                                        <div class="choice" onclick="tipoSeleccionado(12)" data-toggle="wizard-radio">
+                                                            <input type="radio">
+                                                            <div class="icon text-center">
+                                                                <h1>12</h1>
                                                             </div>
                                                             <h6>Futbol 12</h6>
                                                         </div>
@@ -79,47 +98,46 @@
                                                 </div>
                                             </div>
                                             <div class="tab-pane" id="account">
-                                                <h4 class="info-text">Elige un equipo Para jugar </h4>
+                                                <h4 class="info-text">Elige el equipo con el que deseas jugar</h4>
                                                 <div class="row">
                                                     <div class="col-lg-10 col-lg-offset-1">
                                                         
                                                         <%  equipo equipos = new equipo();
-                                                                List<Equipo> list = equipos.getAllE(request,response);
-                                                              if (list.equals(null)) {
-                                                          %>
-                                                                       <h2> No hay Campos para Mostrar</h2>     
-                                                                 <% } %>
+                                                            List<Equipo> list = equipos.getAllE(request,response);
+                                                            if (list.equals(null)) {%>
+                                                                <h2> No hay Campos para Mostrar</h2>     
+                                                        <%  }else{ %>
 
-                                                             <%for (Equipo LEquipo : list) {
+                                                             <%for (Equipo LEquipo : list) {%>   
 
-                                                             %>   
-
-                                                          <div class="card-description">
-                                                              <div class="col-lg-4">
-                                                                  <div class="card card-pricing card-raised">
-                                                                      <div class="content">
-                                                                          <h6 class="category"><%=LEquipo.getNombre()%></h6>
-                                                                          <div class="icon icon-rose">
-                                                                              <!--<img class="avatar" src="../../assets/img/Equipo/COLOCAR EL EQUIPO.GETIMAGEN LEquipo.getImagen()" style="width: 120px;height: 120px;">-->
-                                                                          </div>
-                                                                          <h3 class="card-title"><%=LEquipo.getCiudad()%></h3>
-                                                                          <div class="radio">
-                                                                            <label>
-                                                                                <input id="equipoEncuentro" name="equipo" type="radio" value="<%=LEquipo.getIdEquipo()%>"/>
-                                                                                <span class="circle"></span>
-                                                                                <span class="check"></span> Selecionar
-                                                                            </label>
+                                                                <div class="card-description">
+                                                                    <div class="col-lg-4">
+                                                                        <div class="card card-pricing card-raised">
+                                                                            <div class="content">
+                                                                                <h6 class="category"><%=LEquipo.getNombre()%></h6>
+                                                                                <!--<div class="icon icon-rose">
+                                                                                    <img class="avatar" src="../../assets/img/jugadorimg/Manchester-City-stats1.png" style="width: 120px;height: 120px;">
+                                                                                </div>-->
+                                                                                <h3 class="card-title"><%=LEquipo.getCiudad()%></h3>
+                                                                                <div class="radio">
+                                                                                  <label>
+                                                                                      <input id="equipoEncuentro" name="equipo" type="radio" onclick="equipoSeleccionado(this)" value="<%=LEquipo.getIdEquipo()%>"/>
+                                                                                      <span class="circle"></span>
+                                                                                      <span class="check"></span> Selecionar
+                                                                                  </label>
+                                                                              </div>
+                                                                            </div>
                                                                         </div>
-                                                                      </div>
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-                                                           <%}%> 
+                                                                    </div>
+                                                                </div>
+                                                                <%}
+                                                            }%> 
                                                 
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="tab-pane" id="address">
+                                                <h4 class="info-text">Selecciona el campo el el que deseas jugar</h4>
                                                 <div class="row">
                                                     <div class="col-lg-10 col-lg-offset-1">
                                                         
@@ -146,12 +164,11 @@
                                                                         <p class="card-description"><%=LCampo.getDireccion()%></p>
                                                                         <div class="radio">
                                                                             <label>
-                                                                                <input id="campoEncuentro" name="campo" type="radio" value="<%=LCampo.getIdCampo()%>">
+                                                                                <input id="campoEncuentro" name="campo" type="radio" onclick="campoSeleccionado(this)" value="<%=LCampo.getIdCampo()%>">
                                                                                 <span class="circle"></span>
                                                                                 <span class="check"></span> Selecionar
                                                                             </label>
                                                                         </div>
-                                                                        <!--<button id="idCampo" value="<%=LCampo.getIdCampo()%>" class="btnCampo btn btn-fill btn-rose btn-wd">Elegir Campo</button>-->
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -177,6 +194,7 @@
                             </div>
                             <!-- wizard container -->
                         </div>
+                        <%}%>
                     </div>
                 </div>
             </div>
@@ -185,6 +203,23 @@
         <script>
             $("#encuentro").addClass('active');
             CargarNotificaciones();
+            
+            if($("#noEncuentros").text() == "no"){
+                
+                $.notify({
+                    icon: "perm_identity",
+                    message: "Podras administrar tus encuentros cuando hagas parte de un equipo."
+
+                },{
+                    type: 'warning',
+                    timer: 2500,
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    }
+                });
+            }
+            
         </script>
     </body>
 </html>

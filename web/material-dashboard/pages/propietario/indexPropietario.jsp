@@ -8,6 +8,7 @@
     </head>
     <body>
         <div class="wrapper">
+            <%@include file="../includes/notificacionesPropietario.jsp" %>%>
             <%@include file="../includes/sidebarPropietario.jsp" %>
             <div class="main-panel">
                 <%@include file="../includes/headerPropietario.jsp" %>
@@ -52,7 +53,7 @@
                                     <p>Lleva un control especifico y organizado de tus canchas dia a dia</p>
                                   </div>
                                     <div class="card-footer">
-                                        <button class="btn btn-danger btnVerCanchas">Administrar canchas</button>
+                                        <a href="/FutPlayFinal/material-dashboard/pages/cancha/administrarCanchas.jsp" class="btn btn-danger">Administrar canchas</a>
                                     </div>
                                 </div>
                             </div>
@@ -65,6 +66,12 @@
         <script type="text/javascript">
             $("#nombrepagina").text("Inicio");
             $("#inicio").addClass("active");
+            
+            window.onload = function (){
+                
+                CargarNotificacionesPropietario();
+                
+            };
         </script>
     </body>
 </html>

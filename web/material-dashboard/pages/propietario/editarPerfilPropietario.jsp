@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="card-content">
                                     <h4 class="card-title">Editar perfil -
-                                        <small class="category">Completa tu perfil</small>
+                                        <small class="category">Complete su perfil</small>
                                     </h4>
                                     <form method="post" id="frmEditarPropietario">   
                                         <input type="text" hidden="" id="idPropietarioUP" value="<%=objPropietario.getPersona().getIdPersona()%>">
@@ -81,16 +81,6 @@
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                    <i class="material-icons">email</i>
-                                                </span>
-                                                <div class="form-group label-floating is-empty">
-                                                    <label class="label-control">Email
-                                                    </label>
-                                                    <input type="email" name="emailPropietarioUP" id="emailPropietarioUP" class="form-control" value="<%=objPropietario.getPersona().getCorreo()%>">
-                                                </div>
-                                            </div>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
                                                     <i class="material-icons">perm_identity</i>
                                                 </span>
                                                 <div class="form-group label-floating is-empty">
@@ -103,10 +93,8 @@
                                                     </select>
                                                 <span class="material-input"></span></div>
                                             </div>
-                                            <div class="form-group pull-right">
-                                                <div class="input-group">
-                                                    <button type="submit" class="btn btn-danger">Actualizar Perfil</button>
-                                                </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-danger pull-right">Actualizar Perfil</button>
                                             </div>
                                         </div>                           
                                     </form>
@@ -127,7 +115,6 @@
         <script type="text/javascript">
             $("#nombrepagina").text("Editar perfil");
             $("#editarperfil").addClass("active");
-            $("#opcionesPerfil").addClass("in"); 
         </script>
     </body>
 </html>

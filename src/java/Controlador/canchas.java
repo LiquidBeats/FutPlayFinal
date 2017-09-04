@@ -55,9 +55,6 @@ public class canchas extends HttpServlet {
                 case "getCanchasCalendar":
                     getCanchasCalendar(request,response);
                     break;
-                case "getAll":
-                    getAll(request,response);
-                    break;
             }
         }
     }
@@ -136,26 +133,12 @@ public class canchas extends HttpServlet {
         
     }
     
-   protected void getAll(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String idcampo = request.getParameter("idcampo");
-        JSONArray jsonCanchas1 = new JSONArray();
-        JSONArray jsonCanchas2 = new JSONArray();
-        JSONArray jsonCanchas3 = new JSONArray();
-        JSONObject jsonCanchas = new JSONObject();
+    public List<Canchas> getAll(int idcampo){
         List<Canchas> listCancha = null;
         Session s = HibernateUtil.getSessionFactory().openSession();
         Query q = s.createQuery("FROM Canchas WHERE Campo ="+idcampo+"");
         listCancha=q.list();
-        for (Canchas ch : listCancha) {
-            jsonCanchas1.add(ch.getIdCancha());
-            jsonCanchas2.add(ch.getNumero());
-            jsonCanchas3.add(ch.getTipo_Cancha());
-        }
-        jsonCanchas.put("idcancha", jsonCanchas1);
-        jsonCanchas.put("numerocancha", jsonCanchas2);
-        jsonCanchas.put("tipocancha", jsonCanchas3);
-        response.getWriter().write(jsonCanchas.toJSONString());
+        return listCancha;
     }
     
     protected void getCanchasCalendar(HttpServletRequest request, HttpServletResponse response)
@@ -178,8 +161,9 @@ public class canchas extends HttpServlet {
     protected void checkCanchas(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String rt="0";
+        String idcampo = request.getParameter("idcampo");
         Session s = HibernateUtil.getSessionFactory().openSession();
-        Query q = s.createQuery("FROM Canchas");
+        Query q = s.createQuery("FROM Canchas WHERE Campo = '"+idcampo+"'");
         List<Canchas> listCan = q.list();
         if(listCan.size()>0){
             rt="1";
