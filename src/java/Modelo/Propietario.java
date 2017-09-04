@@ -44,7 +44,11 @@ public class Propietario implements Serializable{
     public void setPersona(Persona Persona) {
         this.Persona = Persona;
     }
+    public String toString(){
     
+        return String.valueOf(this.idPropietario);
+    
+    }
     
     
 }

@@ -65,7 +65,7 @@
                                     <span class="help-block">Ingresa el alias del jugador</span>
                                     <span class="material-input"></span><br><br>
                                 </div>
-                                <div id="busquedaContainer" style="max-height: 300px;overflow-y: scroll;">
+                                <div id="busquedaContainer" style="max-height: 300px;overflow-y: auto;">
                                     <!--<div class="col-md-4">
                                         <div class="card card-pricing card-raised">
                                             <div class="content">

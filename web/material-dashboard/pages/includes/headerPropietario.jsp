@@ -17,29 +17,20 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <!--<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="material-icons">dashboard</i>
-                        <p class="hidden-lg hidden-md">Dashboard</p>
-                    </a>-->
-                </li>
                 <li class="dropdown">
-                    <!-- ESPACIO PARA LAS NOTIFICACIONES -->   
-                    <!-- AGREGAR A LAS NOTIFICACIONES ETIQUETE A.class: verNotificaciones,actualizarNotificaciones-->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" rel="tooltip" data-placement="bottom" data-original-title="Notificaciones">
+                    <a href="#" class="dropdown-toggle btn-Notification verNotificacionesPropietario actualizarNotificacionesPropietario" data-toggle="dropdown" rel="tooltip" data-placement="bottom" data-original-title="Notificaciones" aria-expanded="false">
                         <i class="material-icons">notifications</i>
                         <div id="numeroNotificacionesContainer"></div>
                         <p class="hidden-lg hidden-md">
                             Notificaciones
                             <!--<b class="caret"></b>-->
                         </p>
-                    </a>
-                
+                    <div class="ripple-container"></div></a>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" rel="tooltip" title="Cerrar sesión" data-placement="bottom" id="btnCerrarSesion" data-toggle="dropdown">
+                    <a href="#" class="dropdown-toggle" id="btnCerrarSesion" data-toggle="dropdown">
                         <i class="material-icons">power_settings_new</i>
-                        <p class="hidden-lg hidden-md">Cerrar sesión</p>
+                        <p class="hidden-lg hidden-md">Profile</p>
                     </a>
                 </li>
                 <li class="separator hidden-lg hidden-md"></li>

@@ -505,7 +505,7 @@ var $validator = $('#frmJugador').validate({
                                        url:"/FutPlayFinal/usuario/registrar",
                                        method:"post",
                                        data:{UNombre:UNombre,UApellido:UApellido,UFechaNacimiento:UFechaNacimiento,UTelefono:UTelefono,UGenero:UGenero,UCorreo:UCorreo,UContrasenia:UContrasenia,UAvatar:UAvatar},
-                                       success: function(){
+                                       complete: function(){
                                            ////////Subir Avatar/////////
                                             var data = new FormData();
                                             $.each($('#avatarJugador')[0].files, function(i, file) {
@@ -533,6 +533,7 @@ var $validator = $('#frmJugador').validate({
                                               dataType:"json",
                                               data:{UCorreo:UCorreo,Alias:alias,Posicion:posicion,Pierna:pierna,Descripcion:descripcion,rankingSystem1:rankingSystem1,rankingSystem2:rankingSystem2,rankingSystem3:rankingSystem3}
                                            }).done(function(data){
+                                               console.log(data);
                                                $.ajax({
                                                   url:"/FutPlayFinal/notificacion/notificacionregistro"
                                                });
@@ -544,8 +545,6 @@ var $validator = $('#frmJugador').validate({
                                                title:"Bienvenido!",
                                                text:"Ahora haces parte de la comunidad futplay inicia sesion y disfruta",
                                                type:"success",
-                                               confirmButtonText:"Aceptar",
-                                               showCancelButton:false,
                                                preConfirm: function(){
                                                    window.location.href = "/FutPlayFinal/material-dashboard/pages/usuario/login.html";
                                                }
@@ -597,6 +596,10 @@ $(".editarJugador").click(function (e){
                         closeOnConfirm: false,
                         showLoaderOnConfirm: true
                           
+                    }).then(function (){
+                        
+                        window.location = "/FutPlayFinal/material-dashboard/pages/jugador/verPerfilJugador.jsp";
+                        
                     });
                     
                 }else{
@@ -742,7 +745,7 @@ function agregarJugador(url){
                                 align: 'right'
                             }
                         });
-
+                        window.location = "/FutPlayFinal/material-dashboard/pages/equipo/verEquipo.jsp";
                     }
                 
                 });
@@ -1551,45 +1554,119 @@ $('.btnCampo').on('click',function(e){
       // location.href = "/FutPlayFinal/material-dashboard/pages/encuentro/registrarEncuentros.jsp"; 
     });
  });
+ 
+ //////////// FUNCIONES PARA DEFINIR LOS VALORES PRINCIPALES DEL ENCUENTRO ///////7
+ 
+ //// ESTABLECEMOS LAS VARIABLES QUE VAMOS A USAR ////
+ var tipoSelect = 0;
+ var equipoSelect = 0;
+ var campoSelect = 0;
+ function tipoSeleccionado(e){
+     
+     tipoSelect = e;
+ }
+ function equipoSeleccionado(e){
+     
+     equipoSelect = e.value;
+ }
+ function campoSeleccionado(e){
+     
+     campoSelect = e.value;
+     
+ }
  ////////////////////////////// HACER EL REGISTRO DEL ENCUENTRO ///////////////////////////
  $(".ingresarEncuentro").click(function (){
      
-    var tipo = $("#tipo").val(); 
-    var equipo = $("#equipoEncuentro").val();
-    var campo = $("#campoEncuentro").val();
-    
-    $.post("/FutPlayFinal/encuentros/ingresarEncuentro",{tipo:tipo,equipo:equipo,campo:campo},function (responseText) {
+     /// VEMOS LOS VALORES SELECCIONADOS //////
+    if (tipoSelect == 0 || equipoSelect == 0 || campoSelect == 0) {
+        
+         $.notify({
+            icon: "perm_identity",
+            message: "Para ingresar el encuentro primero debes completar todos los datos."
+
+        },{
+            type: 'danger',
+            timer: 3000,
+            placement: {
+                from: 'bottom',
+                align: 'right'
+            }
+        });
+    }else{
+        
+        $.post("/FutPlayFinal/encuentros/ingresarencuentro",{tipo:tipoSelect,equipo:equipoSelect,campo:campoSelect},function (responseText) {
        
-        if (responseText == "1") {
-            
-            $.notify({
-                icon: "perm_identity",
-                message: "La solicitud del encuentro ha sido enviada exitosamente."
+            if (responseText == "1") {
 
-            },{
-                type: 'success',
-                timer: 2500,
-                placement: {
-                    from: 'bottom',
-                    align: 'right'
-                }
-            });
-            
-        }else if (responseText == 2) {
-            
-            $.notify({
-                icon: "perm_identity",
-                message: "Al parecer este equipo que elegiste no esta disponible este tipo de encuentro :("
+                $.notify({
+                    icon: "perm_identity",
+                    message: "La solicitud del encuentro ha sido enviada exitosamente."
 
-            },{
-                type: 'danger',
-                timer: 3000,
-                placement: {
-                    from: 'bottom',
-                    align: 'right'
-                }
-            });
-            
-        }
-    });
+                },{
+                    type: 'success',
+                    timer: 2500,
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    }
+                });
+
+            }else if (responseText == 2) {
+
+                $.notify({
+                    icon: "perm_identity",
+                    message: "Al parecer este equipo que elegiste no esta disponible este tipo de encuentro."
+
+                },{
+                    type: 'danger',
+                    timer: 3000,
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    }
+                });
+
+            }else if (responseText == "3") {
+                
+                $.notify({
+                    icon: "perm_identity",
+                    message: "Al parecer tu equipo no esta disponible para el tipo de encuentro que elegiste."
+
+                },{
+                    type: 'danger',
+                    timer: 3000,
+                    placement: {
+                        from: 'bottom',
+                        align: 'right'
+                    }
+                });
+                
+            }
+        });
+        
+    }
+    
  });
+ ////////////////////////// ACEPTAR LA SOLICITUD PARA UN ENCUENTRO //////////////////////////
+ function aceptarEncuentro(e){
+     
+    var informacion = e.id.split("/");
+
+    swal({
+       title: "Aceptar Encuentro",
+       text: "¿Estas seguro que deseas enfrentarte al equipo "+informacion[0]+"?",
+       type: "warning",
+       showCancelButton: true,
+       closeOnConfirm: false,
+       showLoaderOnConfirm: true
+     }).then(function (){
+
+        $.post("/FutPlayFinal/encuentros/aceptarencuentro",{equipo:informacion[1],campo:informacion[2],tipo:informacion[3]},function (responseText) {
+           
+            alert(responseText);
+            
+        });
+         
+     });
+     
+ }

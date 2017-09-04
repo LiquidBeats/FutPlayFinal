@@ -8,6 +8,7 @@
     </head>
     <body>
         <div class="wrapper">
+            <%@include file="../includes/notificacionesPropietario.jsp" %>%>
             <%@include file="../includes/sidebarPropietario.jsp" %>
             <div class="main-panel">
                 <%@include file="../includes/headerPropietario.jsp" %>
@@ -65,6 +66,12 @@
         <script type="text/javascript">
             $("#nombrepagina").text("Inicio");
             $("#inicio").addClass("active");
+            
+            window.onload = function (){
+                
+                CargarNotificacionesPropietario();
+                
+            };
         </script>
     </body>
 </html>

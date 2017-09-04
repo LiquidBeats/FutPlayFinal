@@ -68,7 +68,7 @@
                 </a>
             </li>
             <li id="encuentro">
-                <a href="../encuentro/registroEncuentro.jsp">
+                <a href="../encuentro/verEncuentros.jsp">
                     <i class="material-icons">flash_on</i>
                     <p>Encunetros</p>
                 </a>
