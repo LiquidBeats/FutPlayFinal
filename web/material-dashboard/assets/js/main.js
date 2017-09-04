@@ -53,7 +53,6 @@ $(document).ready(function(){
         }
     });
    
-});
 $("#btnRegistrar").click(function (e){
     e.preventDefault();
     swal("¡Bienvenido!", "Ahora haces parte del mundo FutPlay","success");
@@ -317,14 +316,23 @@ $(".editarUsuario").click(function (e){
     $("#avatarJugador").change(function(){
         readURL(this);
     });
+    var fileTypes = ["jpg","jpeg","png"];
     function readURL(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
-                $("#avatarJugadorNombre").val(input.files[0].name);
+            var extension = input.files[0].name.split('.').pop().toLowerCase(),  //file extension from input file
+            isSuccess = fileTypes.indexOf(extension) > -1;  //is extension in acceptable types
+
+            if (isSuccess) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+                    $("#avatarJugadorNombre").val(input.files[0].name);
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
+            else{
+                swal("Advertencia","El archivo seleccionado no es una imagen, solo puedes subir archivos con extension jpg, jpeg y png","warning");
+            }
         }
     }
 ////////////////////Funciones para validar password email y telefono////////////////7
@@ -1592,4 +1600,6 @@ $('.btnCampo').on('click',function(e){
             
         }
     });
+ });
+ 
  });

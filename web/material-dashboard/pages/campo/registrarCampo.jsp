@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="card-content">
                                         <h4 class="card-title">Registra tu campo</h4>
-                                        <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="col-sm-4 col-sm-offset-1" id="pene">
                                             <div class="fileinput fileinput-new text-center" style="margin-top:22px;" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail">
                                                     <img src="/FutPlayFinal/material-dashboard/assets/img/register.jpeg" alt="...">

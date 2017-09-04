@@ -71,7 +71,8 @@
                             <a href="http://localhost:8080/FutPlayFinal/material-dashboard/pages/campo/registrarCampo.jsp">Agregar campo</a>
                         </li>
                         <li id="administrarcampos">
-                            <a href="http://localhost:8080/FutPlayFinal/material-dashboard/pages/campo/administrarCampo.jsp">Administrar campos</a>
+                            <a href="#" class="btnVerCampos">Administrar campos</a>
+                            <input type="text" name="idVerCampos" id="idVerCampos" hidden value="<%=objPropietario.getIdPropietario()%>"/>
                         </li>
                     </ul>
                 </div>
@@ -92,7 +93,7 @@
                 </div>
             </li>
             <li id="cronograma">
-                <a href="http://localhost:8080/FutPlayFinal/material-dashboard/pages/cancha/administrarCanchas.jsp">
+                <a href="#" class="btnVerCanchas">
                     <i class="material-icons">today</i>
                     <p>Cronograma</p>
                 </a>

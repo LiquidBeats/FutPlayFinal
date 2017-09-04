@@ -118,17 +118,28 @@ $(document).ready(function(){
     $("#fotocampouploadUP").change(function(){
         readURL(this); 
     });
+    var fileTypes = ["jpg","jpeg","png"];
     function readURL(input) {
         if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
-                $("#avatarFotoNombre").val(input.files[0].name);
-                $("#campoFotoNombre").val(input.files[0].name);
-                $("#campoFotoNombreUP").val(input.files[0].name);
-                $("#avatarPropietarioNombreUP").val(input.files[0].name);
+            var extension = input.files[0].name.split('.').pop().toLowerCase(),  //file extension from input file
+            isSuccess = fileTypes.indexOf(extension) > -1;  //is extension in acceptable types
+
+            if (isSuccess) { 
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+                    $("#avatarFotoNombre").val(input.files[0].name);
+                    $("#campoFotoNombre").val(input.files[0].name);
+                    $("#campoFotoNombreUP").val(input.files[0].name);
+                    $("#avatarPropietarioNombreUP").val(input.files[0].name);
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
+            else{
+                $("#pene").removeClass("fileinput-preview");
+                $("#pene").removeClass("fileinput-new");
+                swal("Advertencia","El archivo seleccionado no es una imagen, solo puedes subir archivos con extension jpg, jpeg y png","warning");
+            }
         }
     }
 ////////////////////////Registro de un propietario///////////////////
@@ -411,8 +422,8 @@ $(document).ready(function(){
                                         title:"Exito",
                                         text:"Campo registrado exitosamente!",
                                         type:"success",
+                                        confirmButtonText:"Aceptar",
                                         closeOnConfirm:true,
-                                        showCancelButton:true,
                                         preConfirm: function(){
                                            window.location="/FutPlayFinal/material-dashboard/pages/campo/administrarCampo.jsp";   
                                         }
@@ -442,7 +453,7 @@ $(document).ready(function(){
             type: "warning",   
             showCancelButton: true,   
             confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "Sí",
+            confirmButtonText: "Aceptar",
             animation: "slide-from-top",   
             closeOnConfirm: false,
             cancelButtonText: "Cancelar",
@@ -452,15 +463,41 @@ $(document).ready(function(){
                     $.ajax({
                         url:"/FutPlayFinal/campos/eliminar",
                         method:"post",
-                        data:{idcampo:idcampo}
+                        dataType:"json",
+                        data:{idcampo:idcampo},
+                        cache:false
                     }).done(function(rt){
-                        if(rt!=="0"){
-                            swal({
-                                title:"Exito",
-                                text:"Campo elimiado exitosamente",
-                                type:"success",
-                                preConfirm: function(){
-                                    window.location.href="/FutPlayFinal/material-dashboard/pages/campo/administrarCampo.jsp";    
+                        if(rt>"0"){
+                            var idPropietario = $("#idVerCampos").val();
+                            $.ajax({
+                               url:"/FutPlayFinal/campos/checkCampos",
+                               method:"post",
+                               dataType:"json",
+                               data:{idPropietario:idPropietario},
+                               cache:false
+                            }).done(function(data){
+                                console.log(data);
+                                if(data>"0"){
+                                    swal({
+                                        title:"Exito",
+                                        text:"Campo eliminado exitosamente",
+                                        type:"success",
+                                        confirmButtonText:"Aceptar",
+                                        preConfirm: function(){
+                                            window.location.href="/FutPlayFinal/material-dashboard/pages/campo/administrarCampo.jsp";    
+                                        }
+                                    });
+                                }
+                                else{
+                                    swal({
+                                        title:"Exito",
+                                        text:"Campo eliminado exitosamente",
+                                        type:"success",
+                                        confirmButtonText:"Aceptar",
+                                        preConfirm: function(){
+                                            window.location.href="/FutPlayFinal/material-dashboard/pages/propietario/indexPropietario.jsp";    
+                                        }
+                                    });
                                 }
                             });
                         }
@@ -628,6 +665,7 @@ $(document).ready(function(){
                                      title:"Exito",
                                      text:"Campo actualizado exitosamente",
                                      type:"success",
+                                     confirmButtonText:"Aceptar",
                                      preConfirm: function(){                                       
                                         window.location.href = "/FutPlayFinal/material-dashboard/pages/campo/administrarCampo.jsp";                  
                                      }
@@ -680,7 +718,24 @@ $(document).ready(function(){
             }
         });
     }); 
-    
+////////////////////////////Funcion para mostrar canchas para cado campo////////////////////////////
+    $(".btnAdminCancha").on("click",function(e){
+       e.preventDefault();
+       var idcampo = $(this).attr("value");
+       $(this).each(function(){
+            $("#canchaModal").modal("show"); 
+            $.ajax({
+                url:"/FutPlayFinal/canchas/getAll",
+                method:"post",
+                dataType:"json",
+                data:{idcampo:idcampo}
+            }).done(function(data){
+                for (var item in data) {   
+                    $("#tblCanchas").append("<tr><td>"+item.idcancha+"</td><td>"+item.numerocancha+"</td><td>"+item.tipocancha+"</td></tr>");
+                }
+            });
+        });
+    });
 /////////////////////////////////Peticion de ajax para eliminar una cancha///////////////////////////////
     $(".btnEliminarCancha").on("click",function(e){
         e.preventDefault();
@@ -723,7 +778,7 @@ $(document).ready(function(){
 //////////////////////////////////Chequeo de campos registrados fancy button////////////////////////////////
     $(".btnVerCampos").on("click",function(e){
        e.preventDefault();
-       var idPropietario = $(this).val();
+       var idPropietario = $("#idVerCampos").val();
        $.ajax({
            url:"/FutPlayFinal/campos/checkCampos",
            method:"post",
@@ -739,17 +794,15 @@ $(document).ready(function(){
        });
     });
 //////////////////////////////////////Chequeo de canchas registradas fancy button/////////////////////////////
-    $(".btnCheckCanchas").on("click",function(){
-        var idcampo = $(this).attr("value");
+    $(".btnVerCanchas").on("click",function(){
         $.ajax({
-            url:"/FutPlay/canchas/checkCanchas",
-            type:"post",
-            data:{idcampo:idcampo}
+            url:"/FutPlayFinal/canchas/checkCanchas",
+            type:"post"
         }).done(function(rt){
             if(rt>"0"){ 
-                
+                window.location.href = "/FutPlayFinal/material-dashboard/pages/cancha/administrarCanchas.jsp"
             }else{  
-                swal("Informacion","No tienes canchas registradas en este campo","info");                             
+                swal("Informacion","No tienes canchas registradas, empieza por añadir algunas","info");                             
             }           
         });
     });
